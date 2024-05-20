@@ -1,0 +1,29 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    env:
+      RUST_BACKTRACE: 1
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+    - name: install rust
+      uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: nightly
+        components: "rustfmt,clippy"
+    - name: install python
+      uses: actions/setup-python@v5
+    - name: run pre-commit
+      uses: pre-commit/action@v3.0.1
+    - name: cargo fmt
+      run: cargo fmt --all --check
+    - name: cargo clippy
+      run: cargo clippy --locked --all-targets
+    - name: cargo test
+      run: cargo test --locked --all-features
+    - name: cargo build
+      run: cargo build --release --locked --all-features

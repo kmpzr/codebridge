@@ -1,0 +1,14 @@
+cargo-features = ["edition2024"]
+
+[package]
+name = "codebridge"
+version = "0.1.0"
+edition = "2024"
+description = "codebridge"
+license = "MIT"
+repository = "https://github.com/kmpzr/codebridge"
+authors = ["kmpzr <to@kmpzr.one>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
